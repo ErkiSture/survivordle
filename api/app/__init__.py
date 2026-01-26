@@ -5,14 +5,23 @@ from datetime import date
 import json
 import os
 
+import os
+import json
+
+# Get the directory where this file (__init__.py) lives
+BASE_DIR = os.path.dirname(os.path.abspath(__file__))
+
+# Build the path to survivors.json (adjust ".." as needed to reach the root)
+file_path = os.path.join(BASE_DIR, "..", "survivors.json")
+
 
 def create_app():
   app = Flask(__name__, static_folder="../../client/dist", static_url_path="/")
   CORS(app)
 
-  app.config.from_mapping(
-    DEBUG = True
-  )
+  # app.config.from_mapping(
+  #   DEBUG = True
+  # )
 
   @app.route('/', defaults={'path': ''})
   def serve(path):
@@ -27,7 +36,7 @@ def create_app():
   def daily_survivor():
     """Returns the name and stats of today's survivor"""
 
-    with open("survivors.json", "r") as f:
+    with open(file_path, "r") as f:
       survivors = json.load(f)
 
     today = date.today()
@@ -41,7 +50,7 @@ def create_app():
   def get_survivor_stats(name):
     """Takes a name and returns the stats for that survivor"""
 
-    with open("survivors.json", "r") as f:
+    with open(file_path, "r") as f:
       survivors = json.load(f)
 
     if name not in survivors:
@@ -53,7 +62,7 @@ def create_app():
   def get_all_survivors():
     """Returns a list of all survivor names"""
   
-    with open("survivors.json", "r", encoding="utf-8") as f:
+    with open(file_path, "r", encoding="utf-8") as f:
       survivors = json.load(f)
 
     return jsonify(list(survivors.keys())), 200
