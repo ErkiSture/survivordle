@@ -18,7 +18,7 @@ export default function Game() {
   
   // Call backend and set the daily survivor
   useEffect(() => {
-    fetch("http://127.0.0.1:5000/daily_survivor")
+    fetch("/daily_survivor")
     .then((res) => res.json())
     .then((json) => setDailySurvivor(json));
   }, [])
