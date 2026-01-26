@@ -1,0 +1,48 @@
+.input-wrapper{
+  z-index: 100;
+}
+
+.input-form{
+  width: fit-content;
+  /* border: 1px green dotted; */
+  width: fit-content;
+  position: relative;
+}
+
+.input-field{
+  padding: 6px 6px;
+  margin: 10px 0;
+  border-radius: 4px;
+  outline: none;
+  font-size: 1.3rem;
+  /* border: 1px red dotted; */
+  width: 100%;
+  background: none;
+  border:none;
+  color: whitesmoke;
+  text-align: center;
+}
+
+.suggestion-list{
+  text-decoration: none;
+  list-style: none;
+  position: absolute;
+  width: fit-content;
+  /* border:1px yellow dotted; */
+  width: 100%;
+}
+
+.suggestion button{
+  border: none;
+  margin-bottom: 4px;
+  padding: 10px 12px;
+  border-radius: 4px;
+  width: 100%;
+  background-color: #2b2b2b;
+  color: whitesmoke;
+  font-size: 1.1rem;
+}
+
+.suggestion button:hover{
+  background-color: #414141;
+}

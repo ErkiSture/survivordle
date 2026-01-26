@@ -1,0 +1,57 @@
+.game{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 5px;
+  padding: 4rem 0rem;
+}
+
+.row{
+  display: flex;
+  margin: 6px 0;
+  gap: 6px;
+}
+
+.tile{
+  width: 100px;
+  height: 100px;
+  border: 2px solid rgba(255, 255, 255, 0.5);
+  border-radius: 8px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+}
+
+.correct{
+  background-color: rgb(23, 117, 23);
+}
+
+.incorrect {
+  background-color: rgb(199, 37, 37);
+}
+
+.game-tile{
+  animation: flip 0.7s forwards;
+  visibility: hidden;
+}
+
+@keyframes flip {
+  0% {
+    transform: rotateX(0deg);
+    visibility: hidden;
+  }
+  50% {
+    transform: rotateX(90deg);
+    visibility: hidden;
+  }
+  51% {
+    transform: rotateX(90deg);
+    visibility: hidden;
+
+  }
+  100% {
+    transform: rotateX(0deg);
+    visibility: visible;
+  }
+}
