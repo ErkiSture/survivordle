@@ -4,8 +4,9 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "frontend": "cd client && npm run dev",
-    "backend": "cd api && flask --debug run"
+    "client": "cd client && npm run dev",
+    "api": "cd api && flask --debug run",
+    "test_api":  "cd api && pytest -v tests"
   },
   "keywords": [],
   "author": "",

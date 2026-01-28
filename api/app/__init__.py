@@ -4,24 +4,19 @@ import random
 from datetime import date
 import json
 import os
+from dotenv import load_dotenv
 
-import os
-import json
-
-# Get the directory where this file (__init__.py) lives
 BASE_DIR = os.path.dirname(os.path.abspath(__file__))
-
-# Build the path to survivors.json (adjust ".." as needed to reach the root)
 file_path = os.path.join(BASE_DIR, "..", "survivors.json")
 
 
 def create_app():
 
-  app = Flask(__name__)
+  # load_dotenv()
   PROD = os.getenv("FLASK_ENV") == "production"
 
   if PROD:
-    print("PROD TRUE")
+    print('Running production mode')
     app = Flask(__name__, static_folder="../../client/dist", static_url_path="/")
 
     @app.route("/")
@@ -29,7 +24,7 @@ def create_app():
       return app.send_static_file("index.html")
     
   else:
-    print("PROD FALSE")
+    print('Running development mode')
     app = Flask(__name__)
 
   @app.route("/api/daily_survivor")
