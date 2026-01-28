@@ -13,25 +13,25 @@
 }
 
 .tile{
-  width: 15vw;
-  height: 15vw;
-  max-width: 100px;
-  max-height: 100px;
-  border: 2px solid rgba(255, 255, 255, 0.5);
-  border-radius: 8px;
+  width: var(--gametile-size);
+  height: var(--gametile-size);
+  /* max-width: 100px;
+  max-height: 100px; */
+  border: var(--gametile-border-size) solid var(--gametile-border-color);
+  border-radius: var(--gametile-border-radius);
   display: flex;
   justify-content: center;
   align-items: center;
   text-align: center;
-  font-size: clamp(0.6rem, 2.5vw, 1.2rem);
+  font-size: var(--gametile-font-size);
 }
 
 .correct{
-  background-color: rgb(23, 117, 23);
+  background-color: var(--gametile-correct-bg);
 }
 
 .incorrect {
-  background-color: rgb(199, 37, 37);
+  background-color: var(--gametile-incorrect-bg);
 }
 
 .game-tile{
