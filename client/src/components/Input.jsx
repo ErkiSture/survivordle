@@ -10,7 +10,7 @@ export default function Input({ submitHandler, gameOver, setInputText, inputText
 
   // Load all survivor names into state
   useEffect(() => {
-    fetch("/get_all_survivors")
+    fetch("/api/get_all_survivors")
       .then((res) => res.json())
       .then((data) => setSurvivorNames(data))
   }, [])

@@ -1,6 +1,6 @@
 export async function getGuessResult(guessSurvivor, targetSurvivor) {
 
-  const res = await fetch(`get_survivor_stats/${encodeURIComponent(guessSurvivor)}`);
+  const res = await fetch(`/api/get_survivor_stats/${encodeURIComponent(guessSurvivor)}`);
   if (!res.ok) return false;
   const survivor = await res.json()
   

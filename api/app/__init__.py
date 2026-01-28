@@ -1,4 +1,4 @@
-from flask import Flask, jsonify, send_from_directory
+from flask import Flask, jsonify, send_from_directory, render_template
 from flask_cors import CORS
 import random
 from datetime import date
@@ -16,29 +16,26 @@ file_path = os.path.join(BASE_DIR, "..", "survivors.json")
 
 
 def create_app():
-  app = Flask(__name__, static_folder="../../client/dist", static_url_path="/")
-  CORS(app)
 
-  # app.config.from_mapping(
-  #   DEBUG = True
-  # )
+  app = Flask(__name__)
+  PROD = os.getenv("FLASK_ENV") == "production"
 
-  @app.route('/', defaults={'path': ''})
-  def serve(path):
-      # If the file exists (like /static/js/main.js), serve it
-      if path != "" and os.path.exists(app.static_folder + '/' + path):
-          return send_from_directory(app.static_folder, path)
-      # Otherwise, return index.html (React handles the route)
-      else:
-          return send_from_directory(app.static_folder, 'index.html')
-  
-  @app.route("/daily_survivor")
+  if PROD:
+    print("PROD TRUE")
+    app = Flask(__name__, static_folder="../../client/dist", static_url_path="/")
+
+    @app.route("/")
+    def server():
+      return app.send_static_file("index.html")
+    
+  else:
+    print("PROD FALSE")
+    app = Flask(__name__)
+
+  @app.route("/api/daily_survivor")
   def daily_survivor():
-    """Returns the name and stats of today's survivor"""
-
     with open(file_path, "r") as f:
       survivors = json.load(f)
-
     today = date.today()
     seed = int(today.strftime("%Y%m%d"))
     rng = random.Random(seed)
@@ -46,7 +43,7 @@ def create_app():
     
     return jsonify({"name": name, "stats": survivors[name]}), 200
   
-  @app.route("/get_survivor_stats/<name>")
+  @app.route("/api/get_survivor_stats/<name>")
   def get_survivor_stats(name):
     """Takes a name and returns the stats for that survivor"""
 
@@ -58,7 +55,7 @@ def create_app():
 
     return jsonify(survivors[name])
   
-  @app.route("/get_all_survivors")
+  @app.route("/api/get_all_survivors")
   def get_all_survivors():
     """Returns a list of all survivor names"""
   
@@ -67,4 +64,10 @@ def create_app():
 
     return jsonify(list(survivors.keys())), 200
   
+  @app.route("/test")
+  def home():
+    return app.send_static_file("index.html")
+  
   return app
+
+
