@@ -1,11 +1,13 @@
-import { useEffect, useState } from 'react';
+import { useContext, useEffect, useState } from 'react';
 import { getGuessResult, isCorrectGuess } from '../scripts/guess';
 import Input from './Input'
 import '../styles/game.css'
 import  '../styles/index.css'
+import  '../styles/main.css'
 import { title } from '../scripts/helper';
 import { GAME_SETTINGS } from '../scripts/config';
 import WinOverlay from './Win';
+import { ThemeContext } from './App'
 
 
 export default function Game() {
@@ -15,6 +17,7 @@ export default function Game() {
   const [gameOver, setGameOver] = useState(false);
   const [dailySurvivor, setDailySurvivor] = useState(null)
   const [show, setShow] = useState(false);
+  const {theme, setTheme} = useContext(ThemeContext)
   
   // Call backend and set the daily survivor
   useEffect(() => {
@@ -47,21 +50,25 @@ export default function Game() {
   }
   
   return (
-    <div className='game'>
-      <h1>Guess a survivor</h1>
-      <Input 
-        submitHandler={submitHandler} 
-        gameOver={gameOver} 
-        setInputText={setInputText}
-        inputText={inputText}>
-      </Input>
-      <Board guesses={guesses}></Board>
+    <main className={theme}>
+      <div className='main-container'>
+        <div className='game'>
+          <h1>Guess a survivor</h1>
+          <Input 
+            submitHandler={submitHandler} 
+            gameOver={gameOver} 
+            setInputText={setInputText}
+            inputText={inputText}>
+          </Input>
+          <Board guesses={guesses}></Board>
 
-      {/* Render after a delay(when show is true) */}
-      {gameOver && show &&(
-        <WinOverlay guesses={guesses}></WinOverlay>
-      )}
-    </div>
+          {/* Render after a delay(when show is true) */}
+          {gameOver && show &&(
+            <WinOverlay guesses={guesses}></WinOverlay>
+          )}
+        </div>
+      </div>
+    </main>
   )
 }
 

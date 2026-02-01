@@ -19,7 +19,6 @@
   width: 100%;
   background: none;
   border:none;
-  color: whitesmoke;
   text-align: center;
 }
 
@@ -39,8 +38,8 @@
   border-radius: 4px;
   width: 100%;
   background-color: var(--suggestion-bg-color);
-  color: whitesmoke;
   font-size: var(--suggestion-font-size);
+  color: var(--suggestion-text-color);
 }
 
 .suggestion button:hover{

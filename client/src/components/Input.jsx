@@ -22,6 +22,18 @@ export default function Input({ submitHandler, gameOver, setInputText, inputText
     setGuessedSuggestions(new Set([...guessedSuggestions, text]))
   }
 
+  useEffect(() => {
+
+    const handleArrowDownClick = (e) => {
+      if (e.key === 'ArrowDown' && !e.repeat) {
+        console.log('dooown')
+      }
+    };
+
+    window.addEventListener('keydown', handleArrowDownClick)
+
+  }, []);
+
   return(
     <div className="input-wrapper"
       // Have suggestions disappear if onfocused
