@@ -1,7 +1,7 @@
 from flask import Flask, jsonify, send_from_directory, render_template
 from flask_cors import CORS
 import random
-from datetime import date
+from datetime import date, timedelta, datetime
 import json
 import os
 from dotenv import load_dotenv
@@ -59,9 +59,13 @@ def create_app():
 
     return jsonify(list(survivors.keys())), 200
   
-  @app.route("/test")
-  def home():
-    return app.send_static_file("index.html")
+  @app.route("/api/next_reset")
+  def next_reset():
+    now = datetime.now()
+    tomorrow = (now + timedelta(days=1)).replace(hour=0, minute=0, second=0, microsecond=0)
+
+    return jsonify({"next_reset": tomorrow.isoformat()})
+
   
   return app
 

@@ -6,7 +6,7 @@ header{
   font-size: 20px;
   color: var(--text-color);
   background-color: var(--bg-color);
-  padding: 1rem 0;
+  padding: 1rem 1rem;
 }
 
 header .header-container{

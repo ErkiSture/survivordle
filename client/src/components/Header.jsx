@@ -27,7 +27,7 @@ export default function Header() {
 
         <div className='right-header'>
           <ThemeBtn></ThemeBtn>          
-          <NextGameTimer></NextGameTimer>
+          {/* <NextGameTimer></NextGameTimer> */}
         </div>
 
       </div>

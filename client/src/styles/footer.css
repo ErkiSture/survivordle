@@ -5,8 +5,12 @@ footer{
   display: flex;
   justify-content: center;
   align-items: center;
+  padding: 2rem 2rem;
 }
 
 footer .footer-container{
   width: var(--footer-max-width);
+  display: flex;
+  justify-content: center;
+  gap: 13px;
 }
