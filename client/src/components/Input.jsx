@@ -97,9 +97,13 @@ function SuggestionsOverlay({ suggestions, handleSuggestionClick }) {
 
 
 function Suggestion({ text, handleSuggestionClick }) {
-  return(
+  return (
     <li className="suggestion">
-      <button type="button" onClick={() =>handleSuggestionClick(text)}>
+      <button
+        type="button"
+        onMouseDown={() => handleSuggestionClick(text)}
+        onTouchStart={() => handleSuggestionClick(text)}
+      >
         {text}
       </button>
     </li>

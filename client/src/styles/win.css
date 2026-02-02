@@ -24,14 +24,14 @@
 
 .share-button{
   width: fit-content;
-  background-color: #9bef9b;
+  background-color: #74b474;
   padding: 10px 2rem;
   border-radius: 20px; 
   border: none;
 }
 
 .share-button:hover{
-  background-color: #8edd8e;
+  background-color: #7cc27c;
 }
 
 .share-button:active{
